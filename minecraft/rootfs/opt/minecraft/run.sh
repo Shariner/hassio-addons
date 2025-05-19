@@ -6,20 +6,29 @@ JAVA_ARGS=${JAVA_ARGS:-'-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewS
 SERVER_ARGS=${SERVER_ARGS:-''}
 
 main() {
-	local jar_file="${1:-'server.jar'}"
-	local port=$(bashio::addon.port 25565)
+ local jar_file="${1:-'server.jar'}"
+    local port=$(bashio::addon.port 25565)
 
-	bashio::log.debug "Working directory is ${PWD}"
+    # Ensure /share/minecraft exists and link /data to it
+    mkdir -p /share/minecraft
+    if [ -d /data ] && [ ! -L /data ]; then
+      # Move existing data into /share/minecraft if any (optional)
+      mv /data/* /share/minecraft/ 2>/dev/null || true
+      rm -rf /data
+    fi
+    ln -sfn /share/minecraft /data
 
-	if [ ! -f "${jar_file}" ]; then
-		bashio::log.fatal "The jar file '${jar_file}' is not accessible."
-		exit 1
-	fi
+    bashio::log.debug "Working directory is ${PWD}"
 
-	write_eula "${EULA_PATH}"
-	write_server_properties "${SERVER_PROPERTIES_PATH}"
+    if [ ! -f "${jar_file}" ]; then
+        bashio::log.fatal "The jar file '${jar_file}' is not accessible."
+        exit 1
+    fi
 
-	run -jar "${jar_file}" ${SERVER_ARGS} --nogui --universe /data --port "${port}"
+    write_eula "${EULA_PATH}"
+    write_server_properties "${SERVER_PROPERTIES_PATH}"
+
+    run -jar "${jar_file}" ${SERVER_ARGS} --nogui --universe /data --port "${port}"
 }
 
 write_eula() {
