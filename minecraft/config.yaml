@@ -15,7 +15,7 @@ ports_description:
   "25565/tcp": "The port for the Minecraft server"
 map:
   - config:rw
-  - share/minecraft:data:rw
+  - share:rw
 environment:
   PUID: "0"
   PGID: "0"
