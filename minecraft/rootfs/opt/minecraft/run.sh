@@ -4,7 +4,7 @@ EULA_PATH="eula.txt"
 SERVER_PROPERTIES_PATH="server.properties"
 JAVA_ARGS=${JAVA_ARGS:-'-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M'}
 SERVER_ARGS=${SERVER_ARGS:-''}
-
+bashio::log.info "Minecraft server is starting... Version 2.1.0 of script"
 main() {
  local jar_file="${1:-'server.jar'}"
     local port=$(bashio::addon.port 25565)
