@@ -2,7 +2,7 @@ name: "Minecraft: Java Edition Server"
 version: "1.20.4"
 slug: "minecraft"
 description: "Run a private server for Minecraft: Java Edition."
-url: "https://github.com/evilmarty/hassio-addons/tree/master/minecraft"
+url: "https://github.com/shariner/hassio-addons/tree/master/minecraft"
 image: "ghcr.io/evilmarty/hassio-minecraft"
 arch:
   - amd64
