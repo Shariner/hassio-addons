@@ -1,5 +1,5 @@
 name: "Minecraft: Shariners Java Edition Server"
-version: "1.20.4.1"
+version: "1.20.4"
 slug: "minecraft"
 description: "Run a private server for Minecraft: Java Edition."
 url: "https://github.com/shariner/hassio-addons/tree/master/minecraft"
