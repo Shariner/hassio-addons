@@ -16,7 +16,7 @@ main() {
       mv /data/* /share/minecraft/ 2>/dev/null || true
       rm -rf /data
     fi
-    ln -sfn /share/minecraft /data
+    cd /share/minecraft || bashio::log.fatal "Kann nicht nach /share/minecraft wechseln"
 
     bashio::log.debug "Working directory is ${PWD}"
 
